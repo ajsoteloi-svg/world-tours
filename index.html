@@ -1,165 +1,237 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>World Tours — Rubén's Journey</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Noto+Serif+SC:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --red: #C0392B;
-  --gold: #D4A843;
-  --dark: #1A1A2E;
-  --ink: #2C2C3E;
-  --cream: #FAF7F2;
-  --muted: #8A8A9A;
-  --light-gold: #F5E6C8;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+  :root {
+    --red:    #c0392b;
+    --gold:   #d4a017;
+    --ink:    #1a1208;
+    --paper:  #fdf6e3;
+    --cream:  #f5ead0;
+    --smoke:  #ece3d0;
+    --jade:   #2e7d5e;
+    --sky:    #2980b9;
+    --shadow: rgba(26,18,8,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,26,46,0.95);backdrop-filter:blur(10px);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);letter-spacing:2px;}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{color:#fff;text-decoration:none;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;opacity:.7;transition:.3s;}
-.nav-links a:hover{opacity:1;color:var(--gold);}
+  /* ── NAV ── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(26,18,8,.92);backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.9rem 2.5rem;border-bottom:2px solid var(--gold);
+  }
+  .nav-logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.25rem;letter-spacing:.05em}
+  .nav-links{display:flex;gap:1.8rem;list-style:none}
+  .nav-links a{color:#e8d9b8;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover{color:var(--gold)}
 
-/* ── HERO ── */
-.hero{min-height:100vh;background:linear-gradient(135deg,#1A1A2E 0%,#16213E 40%,#0F3460 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A843' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
-.hero-tag{display:inline-block;background:var(--red);color:#fff;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;border-radius:2px;margin-bottom:24px;animation:fadeDown .8s ease forwards;}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);color:#fff;line-height:1.05;margin-bottom:24px;animation:fadeUp 1s .2s ease both;}
-.hero h1 em{color:var(--gold);font-style:italic;}
-.hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:540px;margin:0 auto 40px;line-height:1.7;animation:fadeUp 1s .4s ease both;}
-.hero-btn{display:inline-block;background:var(--gold);color:var(--dark);padding:14px 36px;font-size:.9rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:2px;animation:fadeUp 1s .6s ease both;transition:transform .2s;}
-.hero-btn:hover{transform:translateY(-2px);}
-.floating-chars{position:absolute;font-size:8rem;opacity:.04;color:#fff;pointer-events:none;}
-.fc1{top:10%;left:5%;animation:float 6s ease-in-out infinite;}
-.fc2{bottom:15%;right:8%;animation:float 6s 2s ease-in-out infinite;}
-.fc3{top:40%;right:15%;font-size:5rem;animation:float 8s 1s ease-in-out infinite;}
+  /* ── HERO ── */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:7rem 2rem 4rem;
+    background:linear-gradient(160deg,#1a1208 0%,#3d1f0a 55%,#1a1208 100%);
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'龍';position:absolute;right:-2%;top:50%;transform:translateY(-50%);
+    font-size:28rem;opacity:.06;color:var(--gold);pointer-events:none;line-height:1;
+  }
+  .hero-badge{
+    display:inline-block;background:var(--red);color:#fff;
+    font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+    padding:.35rem 1rem;border-radius:2px;margin-bottom:1.5rem;
+  }
+  .hero h1{
+    font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6rem);
+    color:#fff;line-height:1.05;margin-bottom:1rem;
+  }
+  .hero h1 em{color:var(--gold);font-style:italic}
+  .hero p{color:#c5b592;max-width:540px;font-size:1.05rem;line-height:1.7;margin-bottom:2.5rem}
+  .btn{
+    display:inline-block;background:var(--gold);color:var(--ink);
+    font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:.85rem 2.4rem;border-radius:2px;transition:background .2s,transform .15s;
+  }
+  .btn:hover{background:#e8b820;transform:translateY(-2px)}
+  .hero-chars{position:absolute;left:2%;top:50%;transform:translateY(-50%);
+    font-family:'Noto Serif SC',serif;font-size:2.5rem;color:rgba(212,160,23,.2);
+    writing-mode:vertical-rl;letter-spacing:.4em;pointer-events:none}
 
-/* ── SECTIONS ── */
-section{padding:80px 40px;}
-.section-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:12px;}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:16px;line-height:1.2;}
-.section-sub{color:var(--muted);font-size:1rem;line-height:1.7;max-width:600px;margin-bottom:48px;}
-.container{max-width:1200px;margin:0 auto;}
+  /* ── SECTIONS ── */
+  section{padding:5rem 2rem}
+  .section-label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;margin-bottom:1rem}
+  .section-sub{color:#6b5a3e;max-width:650px;line-height:1.7;margin-bottom:3rem}
+  .container{max-width:1160px;margin:0 auto}
 
-/* ── DESTINATIONS GRID ── */
-.dest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;}
-.dest-card{background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 4px 30px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s;}
-.dest-card:hover{transform:translateY(-6px);box-shadow:0 12px 50px rgba(0,0,0,.12);}
-.dest-card.featured{grid-column:span 2;}
-.dest-img{height:240px;position:relative;overflow:hidden;}
-.dest-card.featured .dest-img{height:320px;}
-.dest-img-bg{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
-.dest-card:hover .dest-img-bg{transform:scale(1.04);}
-.dest-flag{position:absolute;top:16px;left:16px;background:var(--dark);color:#fff;font-size:1.4rem;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-.dest-badge{position:absolute;top:16px;right:16px;background:var(--red);color:#fff;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:2px;}
-.dest-body{padding:24px;}
-.dest-country{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.dest-name{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:12px;}
-.dest-desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:20px;}
-.dest-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid #f0f0f0;padding-top:16px;}
-.info-item{font-size:.8rem;}
-.info-label{color:var(--muted);margin-bottom:2px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;}
-.info-value{font-weight:500;color:var(--ink);}
+  /* ── DESTINATIONS ── */
+  #destinations{background:var(--cream)}
+  .dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+  .dest-card{
+    background:#fff;border:1px solid var(--smoke);border-radius:4px;overflow:hidden;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .dest-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px var(--shadow)}
+  .dest-flag{background:var(--ink);padding:1.5rem;font-size:2.8rem;text-align:center}
+  .dest-body{padding:1.4rem}
+  .dest-badge{display:inline-block;background:var(--red);color:#fff;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;margin-bottom:.6rem}
+  .dest-region{font-size:.72rem;color:#8a7560;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+  .dest-name{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.5rem}
+  .dest-desc{font-size:.88rem;color:#6b5a3e;line-height:1.6;margin-bottom:1rem}
+  .dest-meta{display:flex;flex-direction:column;gap:.3rem;font-size:.8rem;color:#8a7560}
+  .dest-meta span strong{color:var(--ink)}
 
-/* ── CHINA SPOTLIGHT ── */
-.china-section{background:var(--dark);color:#fff;position:relative;overflow:hidden;}
-.china-section::before{content:'中国';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-size:20rem;opacity:.04;font-weight:900;pointer-events:none;}
-.china-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.china-heading{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);margin-bottom:24px;line-height:1.1;}
-.china-heading em{color:var(--gold);font-style:italic;}
-.china-text{color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:20px;}
-.china-cards{display:flex;flex-direction:column;gap:16px;}
-.china-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:20px;transition:.3s;}
-.china-card:hover{background:rgba(212,168,67,.1);border-color:var(--gold);}
-.china-card-icon{font-size:1.4rem;margin-bottom:8px;}
-.china-card-title{font-weight:600;margin-bottom:4px;font-size:.95rem;}
-.china-card-text{color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.5;}
-.china-facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
-.fact{background:rgba(212,168,67,.1);border-left:3px solid var(--gold);padding:16px;}
-.fact-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);line-height:1;}
-.fact-label{color:rgba(255,255,255,.6);font-size:.8rem;margin-top:4px;}
+  /* ── AIRLINES TABLE ── */
+  #airlines{background:var(--ink)}
+  #airlines .section-label{color:var(--gold)}
+  #airlines .section-title{color:#f5ead0}
+  #airlines .section-sub{color:#a89070}
+  .table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.88rem}
+  th{background:rgba(212,160,23,.15);color:var(--gold);text-align:left;padding:.9rem 1rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem;border-bottom:1px solid rgba(212,160,23,.3)}
+  td{padding:.85rem 1rem;color:#c5b592;border-bottom:1px solid rgba(255,255,255,.06)}
+  tr:hover td{background:rgba(255,255,255,.04)}
 
-/* ── CONDITIONAL TYPE 3 SECTION ── */
-.conditionals-section{background:var(--light-gold);}
-.cond-intro{background:var(--dark);color:#fff;padding:24px 32px;border-radius:4px;margin-bottom:40px;}
-.cond-intro h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px;color:var(--gold);}
-.cond-intro p{color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.6;}
-.cond-formula{background:rgba(212,168,67,.2);border:1px solid var(--gold);padding:12px 20px;border-radius:4px;font-family:'Courier New',monospace;font-size:.9rem;margin-top:12px;color:var(--dark);}
-.cond-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.cond-card{background:#fff;border-radius:4px;padding:24px;border-left:4px solid var(--red);box-shadow:0 2px 20px rgba(0,0,0,.05);}
-.cond-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--red);opacity:.3;float:right;line-height:1;}
-.cond-dest{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.cond-sentence{font-size:.95rem;line-height:1.6;color:var(--ink);}
-.cond-sentence strong{color:var(--red);}
-.cond-es{color:var(--muted);font-size:.82rem;font-style:italic;margin-top:8px;border-top:1px solid #f0f0f0;padding-top:8px;}
+  /* ── CHINA SPOTLIGHT ── */
+  #china{background:var(--paper)}
+  .china-stats{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
+  .stat{background:var(--ink);color:#f5ead0;padding:1.2rem 1.8rem;border-radius:3px;text-align:center;min-width:120px}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold)}
+  .stat-label{font-size:.78rem;color:#a89070;margin-top:.2rem}
+  .china-features{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+  .feature{background:var(--cream);border-left:3px solid var(--gold);padding:1.4rem;border-radius:0 3px 3px 0}
+  .feature-icon{font-size:1.8rem;margin-bottom:.6rem}
+  .feature h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.5rem}
+  .feature p{font-size:.85rem;color:#6b5a3e;line-height:1.6}
 
-/* ── RUBEN'S WORK SECTION ── */
-.work-section{background:#fff;}
-.tabs{display:flex;gap:4px;margin-bottom:40px;border-bottom:2px solid #f0f0f0;}
-.tab{padding:12px 24px;background:none;border:none;cursor:pointer;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);transition:.2s;border-bottom:2px solid transparent;margin-bottom:-2px;}
-.tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:500;}
-.tab-content{display:none;}
-.tab-content.active{display:block;animation:fadeUp .4s ease;}
-.blog-post{background:var(--cream);border-radius:4px;padding:32px;margin-bottom:24px;border-left:4px solid var(--gold);}
-.blog-label{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.blog-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:16px;}
-.blog-body{color:var(--muted);line-height:1.8;font-size:.95rem;}
-.blog-body strong{color:var(--ink);}
-.paragraphs-block{background:var(--cream);padding:32px;border-radius:4px;border-left:4px solid var(--red);}
-.para-title{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:12px;}
-.para-text{color:var(--ink);line-height:1.8;margin-bottom:24px;}
-.para-text em{color:var(--red);font-style:normal;font-weight:500;}
+  /* ── TYPE-3 CONDITIONALS ── */
+  #conditionals{background:var(--cream)}
+  .grammar-box{background:var(--ink);color:#f5ead0;padding:1.5rem 2rem;border-radius:4px;margin-bottom:2.5rem;border-left:4px solid var(--gold)}
+  .grammar-box h3{color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:.6rem}
+  .grammar-box code{background:rgba(212,160,23,.15);color:var(--gold);padding:.2rem .5rem;border-radius:2px;font-size:.92rem}
+  .cond-list{display:flex;flex-direction:column;gap:1rem}
+  .cond-item{display:grid;grid-template-columns:2.5rem 1fr;gap:1rem;align-items:start;background:#fff;border:1px solid var(--smoke);padding:1.2rem;border-radius:3px}
+  .cond-num{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);line-height:1}
+  .cond-flag{font-size:.8rem;margin-bottom:.3rem}
+  .cond-en{font-size:.95rem;line-height:1.55;margin-bottom:.4rem}
+  .cond-en strong{color:var(--red)}
+  .cond-es{font-size:.82rem;color:#8a7560;font-style:italic}
 
-/* ── CHAT SECTION ── */
-.chat-section{background:var(--ink);color:#fff;}
-.chat-box{background:#1a1a2e;border-radius:8px;padding:0;overflow:hidden;max-width:700px;margin:0 auto;}
-.chat-header{background:var(--red);padding:16px 24px;display:flex;align-items:center;gap:12px;}
-.chat-avatar{width:36px;height:36px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;}
-.chat-title{font-weight:600;font-size:.95rem;}
-.chat-sub{opacity:.7;font-size:.75rem;}
-.chat-messages{padding:24px;display:flex;flex-direction:column;gap:16px;max-height:500px;overflow-y:auto;}
-.msg{max-width:80%;padding:14px 18px;border-radius:18px;line-height:1.5;font-size:.9rem;}
-.msg.bot{background:rgba(255,255,255,.08);border-radius:4px 18px 18px 18px;align-self:flex-start;}
-.msg.user{background:var(--red);border-radius:18px 4px 18px 18px;align-self:flex-end;}
-.msg-label{font-size:.65rem;letter-spacing:1px;text-transform:uppercase;opacity:.5;margin-bottom:6px;}
-.chat-input{display:flex;padding:16px;gap:12px;border-top:1px solid rgba(255,255,255,.1);}
-.chat-input input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:10px 18px;color:#fff;font-size:.9rem;outline:none;}
-.chat-input input::placeholder{color:rgba(255,255,255,.3);}
-.chat-send{background:var(--gold);border:none;color:var(--dark);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;transition:.2s;}
-.chat-send:hover{background:#e8b84b;}
+  /* ── RUBÉN'S WORK ── */
+  #ruben{background:var(--paper)}
+  .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+  .tab{padding:.55rem 1.2rem;border:1px solid var(--smoke);background:#fff;border-radius:2px;font-size:.82rem;cursor:pointer;transition:all .2s;letter-spacing:.06em}
+  .tab.active,.tab:hover{background:var(--ink);color:var(--gold);border-color:var(--ink)}
+  .tab-content{display:none;background:#fff;border:1px solid var(--smoke);padding:2rem;border-radius:3px;line-height:1.8;font-size:.93rem}
+  .tab-content.active{display:block}
+  .tab-content p{margin-bottom:1rem;color:#3a2e1e}
+  .tab-content em{color:var(--jade);font-style:normal;font-weight:500}
+  .tab-content strong{color:var(--red)}
+  .tab-badge{display:inline-block;background:var(--jade);color:#fff;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .55rem;border-radius:2px;margin-bottom:1rem}
 
-/* ── AIRLINES TABLE ── */
-.table-wrap{overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:.88rem;}
-th{background:var(--dark);color:#fff;padding:12px 16px;text-align:left;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;}
-td{padding:12px 16px;border-bottom:1px solid #f0f0f0;}
-tr:hover td{background:var(--light-gold);}
-.airline-flag{font-size:1.1rem;margin-right:8px;}
+  /* ── BLOG POST (NEW) ── */
+  #blog-china{background:linear-gradient(135deg,#1a1208 0%,#2c1a08 100%);padding:5rem 2rem}
+  #blog-china .section-label{color:var(--gold)}
+  #blog-china .section-title{color:#f5ead0}
+  #blog-china .section-sub{color:#a89070}
+  .blog-card{
+    background:rgba(255,255,255,.05);border:1px solid rgba(212,160,23,.25);
+    border-radius:6px;padding:2.5rem;max-width:900px;margin:0 auto;
+    backdrop-filter:blur(4px);
+  }
+  .blog-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(212,160,23,.2)}
+  .blog-flag{font-size:2.5rem}
+  .blog-meta h2{font-family:'Playfair Display',serif;color:#f5ead0;font-size:1.5rem;margin-bottom:.2rem}
+  .blog-meta span{font-size:.78rem;color:#a89070;letter-spacing:.1em;text-transform:uppercase}
+  .blog-body p{color:#c5b592;line-height:1.85;font-size:.95rem;margin-bottom:1rem}
+  .blog-body em{color:var(--gold);font-style:normal;font-weight:500}
+  .blog-section-title{font-family:'Playfair Display',serif;color:var(--gold);margin:1.8rem 0 .8rem;font-size:1.1rem;letter-spacing:.05em}
+  .blog-tag{display:inline-block;background:rgba(192,57,43,.3);color:#e88;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .6rem;border-radius:2px;margin-right:.4rem;margin-bottom:.6rem}
 
-/* ── FOOTER ── */
-footer{background:var(--dark);color:rgba(255,255,255,.5);text-align:center;padding:32px;font-size:.82rem;}
-footer strong{color:var(--gold);}
+  /* ── FOLLETO BEIJING (NEW) ── */
+  #beijing-folleto{background:var(--cream);padding:5rem 2rem}
+  .folleto-hero{
+    background:linear-gradient(135deg,var(--red) 0%,#8b1a1a 100%);
+    border-radius:8px;padding:3rem 2.5rem;text-align:center;margin-bottom:3rem;
+    position:relative;overflow:hidden;
+  }
+  .folleto-hero::before{content:'北京';position:absolute;right:-1rem;bottom:-2rem;font-family:'Noto Serif SC',serif;font-size:8rem;color:rgba(255,255,255,.08);pointer-events:none}
+  .folleto-hero h2{font-family:'Playfair Display',serif;color:#fff;font-size:clamp(2rem,5vw,3.5rem);margin-bottom:.5rem}
+  .folleto-hero p{color:rgba(255,255,255,.8);font-size:1rem;max-width:500px;margin:0 auto 1rem}
+  .folleto-subtitle{color:var(--gold);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
+  .attractions{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem;margin-bottom:3rem}
+  .attraction-card{
+    background:#fff;border-radius:6px;overflow:hidden;
+    border:1px solid var(--smoke);
+    transition:transform .25s,box-shadow .25s;
+  }
+  .attraction-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px var(--shadow)}
+  .attraction-top{
+    background:linear-gradient(135deg,var(--red),#8b1a1a);
+    padding:1.5rem;display:flex;align-items:center;gap:1rem;
+  }
+  .attraction-emoji{font-size:2.2rem}
+  .attraction-top h3{font-family:'Playfair Display',serif;color:#fff;font-size:1.15rem}
+  .attraction-top span{color:rgba(255,255,255,.7);font-size:.78rem}
+  .attraction-body{padding:1.4rem}
+  .attraction-body p{font-size:.88rem;color:#5a4530;line-height:1.65;margin-bottom:.8rem}
+  .cond1-tag{
+    background:rgba(46,125,94,.12);border-left:3px solid var(--jade);
+    padding:.7rem 1rem;border-radius:0 3px 3px 0;
+    font-size:.84rem;color:#1e5040;line-height:1.55;
+  }
+  .cond1-tag em{font-style:normal;font-weight:600;color:var(--jade)}
+  .folleto-summary{
+    background:var(--ink);border-radius:6px;padding:2.5rem;
+    display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  }
+  @media(max-width:600px){.folleto-summary{grid-template-columns:1fr}}
+  .folleto-summary h3{font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:1rem;font-size:1.2rem}
+  .folleto-summary ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  .folleto-summary li{color:#c5b592;font-size:.88rem;padding-left:1.2rem;position:relative}
+  .folleto-summary li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:.6rem;top:.2rem}
+  .cond1-list{display:flex;flex-direction:column;gap:.6rem}
+  .cond1-item{color:#c5b592;font-size:.85rem;line-height:1.55;padding:.7rem;background:rgba(255,255,255,.04);border-radius:3px;border-left:2px solid var(--jade)}
+  .cond1-item em{color:var(--jade);font-style:normal;font-weight:500}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
+  /* ── CHAT ── */
+  #chat{background:var(--ink);padding:5rem 2rem}
+  #chat .section-label{color:var(--gold)}
+  #chat .section-title{color:#f5ead0}
+  #chat .section-sub{color:#a89070}
+  .chat-box{max-width:720px;border:1px solid rgba(212,160,23,.25);border-radius:6px;overflow:hidden}
+  .chat-messages{padding:1.5rem;display:flex;flex-direction:column;gap:1rem;min-height:220px;background:rgba(255,255,255,.03)}
+  .msg{display:flex;gap:.8rem;align-items:flex-start}
+  .msg-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+  .msg.ai .msg-avatar{background:var(--gold);color:var(--ink)}
+  .msg.user .msg-avatar{background:var(--red);color:#fff}
+  .msg-bubble{background:rgba(255,255,255,.06);padding:.8rem 1.1rem;border-radius:4px;font-size:.87rem;color:#c5b592;line-height:1.6;max-width:90%}
+  .msg.user{flex-direction:row-reverse}
+  .msg.user .msg-bubble{background:rgba(192,57,43,.2);text-align:right}
+  .chat-input-row{display:flex;gap:.5rem;padding:1rem;background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.08)}
+  .chat-input-row input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:.7rem 1rem;color:#f5ead0;font-size:.88rem;outline:none}
+  .chat-input-row input::placeholder{color:#6b5a3e}
+  .chat-input-row button{background:var(--gold);color:var(--ink);border:none;padding:.7rem 1.3rem;border-radius:3px;font-weight:600;font-size:.85rem;cursor:pointer;transition:background .2s}
+  .chat-input-row button:hover{background:#e8b820}
 
-@media(max-width:768px){
-  .china-grid,.dest-card.featured{grid-column:auto;display:block;}
-  .china-grid{display:flex;flex-direction:column;gap:40px;}
-  nav{padding:12px 20px;}
-  .nav-links{display:none;}
-  section{padding:60px 20px;}
-}
+  /* ── FOOTER ── */
+  footer{background:#0e0b06;color:#6b5a3e;text-align:center;padding:2rem;font-size:.82rem;border-top:1px solid rgba(212,160,23,.15)}
+  footer span{color:var(--gold)}
+
+  /* ── UTILITIES ── */
+  @media(max-width:768px){
+    nav{padding:.8rem 1.2rem}
+    .nav-links{gap:1rem}
+    .hero h1{font-size:2.6rem}
+  }
 </style>
 </head>
 <body>
@@ -171,6 +243,8 @@ footer strong{color:var(--gold);}
     <li><a href="#destinations">Destinations</a></li>
     <li><a href="#china">China</a></li>
     <li><a href="#conditionals">Type-3</a></li>
+    <li><a href="#blog-china">Blog</a></li>
+    <li><a href="#beijing-folleto">Beijing</a></li>
     <li><a href="#ruben">Rubén's Work</a></li>
     <li><a href="#chat">Ask Us</a></li>
   </ul>
@@ -178,122 +252,92 @@ footer strong{color:var(--gold);}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="floating-chars fc1">龍</div>
-  <div class="floating-chars fc2">✈</div>
-  <div class="floating-chars fc3">世界</div>
-  <div>
-    <div class="hero-tag">🌍 Explore The World</div>
-    <h1>Discover <em>China</em><br/>& Beyond</h1>
-    <p>Join Rubén on his extraordinary journey through the world's most breathtaking destinations. From the Forbidden City to the Great Wall — adventure awaits.</p>
-    <a href="#destinations" class="hero-btn">Explore Tours</a>
-  </div>
+  <div class="hero-chars">世界旅行</div>
+  <div class="hero-badge">✈ Travel · Culture · Discovery</div>
+  <h1>Discover <em>China</em> & Beyond</h1>
+  <p>Join Rubén on his extraordinary journey through the world's most breathtaking destinations. From the Forbidden City to the Great Wall — adventure awaits.</p>
+  <a href="#destinations" class="btn">Explore Tours</a>
 </section>
 
-<!-- DESTINATIONS -->
-<section id="destinations" style="background:#fff;">
+<!-- FEATURED DESTINATIONS -->
+<section id="destinations">
   <div class="container">
-    <div class="reveal">
-      <p class="section-label">Our Tours</p>
-      <h2 class="section-title">Featured Destinations</h2>
-      <p class="section-sub">Handpicked destinations offering unforgettable cultural experiences, stunning landscapes, and world-class hospitality.</p>
-    </div>
-    <div class="dest-grid reveal">
-
-      <!-- CHINA FEATURED -->
-      <div class="dest-card featured">
-        <div class="dest-img" style="background:linear-gradient(135deg,#8B0000,#C0392B,#E74C3C);">
-          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=900&q=80') center/cover no-repeat;"></div>
-          <div class="dest-flag">🇨🇳</div>
-          <div class="dest-badge">⭐ Featured</div>
-        </div>
+    <div class="section-label">Our Tours</div>
+    <h2 class="section-title">Featured Destinations</h2>
+    <p class="section-sub">Handpicked destinations offering unforgettable cultural experiences, stunning landscapes, and world-class hospitality.</p>
+    <div class="dest-grid">
+      <div class="dest-card">
+        <div class="dest-flag">🇨🇳</div>
         <div class="dest-body">
-          <div class="dest-country">Asia — East</div>
+          <span class="dest-badge">⭐ Featured</span>
+          <div class="dest-region">Asia — East</div>
           <div class="dest-name">China — The Middle Kingdom</div>
-          <div class="dest-desc">From the ancient Forbidden City to the modern skyline of Shanghai, China offers an unparalleled blend of history, culture, and cuisine. Walk the Great Wall, explore Beijing's hutongs, and taste authentic dim sum.</div>
-          <div class="dest-info">
-            <div class="info-item"><div class="info-label">Best Time</div><div class="info-value">Apr–Jun / Sep–Nov</div></div>
-            <div class="info-item"><div class="info-label">Currency</div><div class="info-value">Yuan (CNY ¥)</div></div>
-            <div class="info-item"><div class="info-label">Language</div><div class="info-value">Mandarin Chinese</div></div>
-            <div class="info-item"><div class="info-label">Visa Required</div><div class="info-value">Yes (Tourist L)</div></div>
+          <p class="dest-desc">From the ancient Forbidden City to the modern skyline of Shanghai, China offers an unparalleled blend of history, culture, and cuisine.</p>
+          <div class="dest-meta">
+            <span><strong>Best Time:</strong> Apr–Jun / Sep–Nov</span>
+            <span><strong>Currency:</strong> Yuan (CNY ¥)</span>
+            <span><strong>Language:</strong> Mandarin Chinese</span>
+            <span><strong>Visa:</strong> Yes (Tourist L)</span>
           </div>
         </div>
       </div>
-
-      <!-- JAPAN -->
       <div class="dest-card">
-        <div class="dest-img" style="background:linear-gradient(135deg,#2C3E50,#3498DB);">
-          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80') center/cover no-repeat;"></div>
-          <div class="dest-flag">🇯🇵</div>
-        </div>
+        <div class="dest-flag">🇯🇵</div>
         <div class="dest-body">
-          <div class="dest-country">Asia — East</div>
+          <div class="dest-region">Asia — East</div>
           <div class="dest-name">Japan — Land of the Rising Sun</div>
-          <div class="dest-desc">Ancient temples meet futuristic cities. Experience cherry blossoms, sushi culture, and the serenity of Mount Fuji.</div>
-          <div class="dest-info">
-            <div class="info-item"><div class="info-label">Best Time</div><div class="info-value">March–May</div></div>
-            <div class="info-item"><div class="info-label">Currency</div><div class="info-value">Yen (JPY ¥)</div></div>
+          <p class="dest-desc">Ancient temples meet futuristic cities. Experience cherry blossoms, sushi culture, and the serenity of Mount Fuji.</p>
+          <div class="dest-meta">
+            <span><strong>Best Time:</strong> March–May</span>
+            <span><strong>Currency:</strong> Yen (JPY ¥)</span>
           </div>
         </div>
       </div>
-
-      <!-- FRANCE -->
       <div class="dest-card">
-        <div class="dest-img" style="background:linear-gradient(135deg,#1A237E,#3F51B5);">
-          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80') center/cover no-repeat;"></div>
-          <div class="dest-flag">🇫🇷</div>
-        </div>
+        <div class="dest-flag">🇫🇷</div>
         <div class="dest-body">
-          <div class="dest-country">Europe — Western</div>
+          <div class="dest-region">Europe — Western</div>
           <div class="dest-name">France — Art & Romance</div>
-          <div class="dest-desc">Stroll along the Seine, visit the Louvre, and savor world-renowned cuisine in the City of Light.</div>
-          <div class="dest-info">
-            <div class="info-item"><div class="info-label">Best Time</div><div class="info-value">Apr–Oct</div></div>
-            <div class="info-item"><div class="info-label">Currency</div><div class="info-value">Euro (€)</div></div>
+          <p class="dest-desc">Stroll along the Seine, visit the Louvre, and savor world-renowned cuisine in the City of Light.</p>
+          <div class="dest-meta">
+            <span><strong>Best Time:</strong> Apr–Oct</span>
+            <span><strong>Currency:</strong> Euro (€)</span>
           </div>
         </div>
       </div>
-
-      <!-- COLOMBIA -->
       <div class="dest-card">
-        <div class="dest-img" style="background:linear-gradient(135deg,#2E7D32,#F9A825);">
-          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1553522587-e8c2bba9b9fe?w=600&q=80') center/cover no-repeat;"></div>
-          <div class="dest-flag">🇨🇴</div>
-          <div class="dest-badge" style="background:#2E7D32;">Home</div>
-        </div>
+        <div class="dest-flag">🇨🇴</div>
         <div class="dest-body">
-          <div class="dest-country">South America</div>
+          <div class="dest-region">South America — Home</div>
           <div class="dest-name">Colombia — Gateway to Adventure</div>
-          <div class="dest-desc">Vibrant cities, coffee regions, and Caribbean beaches. Colombia is one of South America's most exciting destinations.</div>
-          <div class="dest-info">
-            <div class="info-item"><div class="info-label">Best Time</div><div class="info-value">Dec–Mar</div></div>
-            <div class="info-item"><div class="info-label">Currency</div><div class="info-value">Peso (COP)</div></div>
+          <p class="dest-desc">Vibrant cities, coffee regions, and Caribbean beaches. Colombia is one of South America's most exciting destinations.</p>
+          <div class="dest-meta">
+            <span><strong>Best Time:</strong> Dec–Mar</span>
+            <span><strong>Currency:</strong> Peso (COP)</span>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- AIRLINES TABLE -->
-<section style="background:var(--cream);">
+<!-- AIRLINES -->
+<section id="airlines">
   <div class="container">
-    <div class="reveal">
-      <p class="section-label">Getting There</p>
-      <h2 class="section-title">Airlines & Services</h2>
-      <p class="section-sub">Main airlines operating routes to our featured destinations from Colombia.</p>
-    </div>
-    <div class="table-wrap reveal">
+    <div class="section-label">Getting There</div>
+    <h2 class="section-title" style="color:#f5ead0">Airlines & Services</h2>
+    <p class="section-sub">Main airlines operating routes to our featured destinations from Colombia.</p>
+    <div class="table-wrap">
       <table>
         <thead>
           <tr><th>Airline</th><th>Destination</th><th>Route</th><th>Flight Time</th><th>Service Class</th><th>Price (approx)</th></tr>
         </thead>
         <tbody>
-          <tr><td><span class="airline-flag">🇨🇳</span>Air China</td><td>Beijing</td><td>BOG → PEK</td><td>~22h (1 stop)</td><td>Economy / Business</td><td>USD $900–$1,800</td></tr>
-          <tr><td><span class="airline-flag">🇨🇳</span>China Southern</td><td>Shanghai</td><td>BOG → PVG</td><td>~24h (1 stop)</td><td>Economy / Premium</td><td>USD $850–$1,600</td></tr>
-          <tr><td><span class="airline-flag">🇯🇵</span>Japan Airlines</td><td>Tokyo</td><td>BOG → NRT</td><td>~20h (1 stop)</td><td>Economy / Business</td><td>USD $1,100–$2,200</td></tr>
-          <tr><td><span class="airline-flag">🇫🇷</span>Air France</td><td>Paris</td><td>BOG → CDG</td><td>~12h (direct)</td><td>Economy / Business</td><td>USD $700–$1,500</td></tr>
-          <tr><td><span class="airline-flag">🇨🇴</span>Avianca</td><td>Multiple</td><td>BOG → Hubs</td><td>Varies</td><td>Economy / Plus</td><td>USD $400–$900</td></tr>
+          <tr><td>🇨🇳 Air China</td><td>Beijing</td><td>BOG → PEK</td><td>~22h (1 stop)</td><td>Economy / Business</td><td>USD $900–$1,800</td></tr>
+          <tr><td>🇨🇳 China Southern</td><td>Shanghai</td><td>BOG → PVG</td><td>~24h (1 stop)</td><td>Economy / Premium</td><td>USD $850–$1,600</td></tr>
+          <tr><td>🇯🇵 Japan Airlines</td><td>Tokyo</td><td>BOG → NRT</td><td>~20h (1 stop)</td><td>Economy / Business</td><td>USD $1,100–$2,200</td></tr>
+          <tr><td>🇫🇷 Air France</td><td>Paris</td><td>BOG → CDG</td><td>~12h (direct)</td><td>Economy / Business</td><td>USD $700–$1,500</td></tr>
+          <tr><td>🇨🇴 Avianca</td><td>Multiple</td><td>BOG → Hubs</td><td>Varies</td><td>Economy / Plus</td><td>USD $400–$900</td></tr>
         </tbody>
       </table>
     </div>
@@ -301,221 +345,316 @@ footer strong{color:var(--gold);}
 </section>
 
 <!-- CHINA SPOTLIGHT -->
-<section id="china" class="china-section">
+<section id="china">
   <div class="container">
-    <div class="china-grid">
-      <div class="reveal">
-        <p class="section-label" style="color:var(--gold);">Spotlight</p>
-        <h2 class="china-heading">The Beauty of <em>China</em></h2>
-        <p class="china-text">China is one of the world's oldest civilizations, with over 5,000 years of continuous history. From the bustling streets of Beijing to the scenic Li River in Guilin, every corner tells a story.</p>
-        <p class="china-text">Rubén visited the Forbidden City, Beihai Park, and the Great Wall — discovering that China is not just a destination, it's a life-changing experience.</p>
-        <div class="china-facts">
-          <div class="fact"><div class="fact-num">5,000+</div><div class="fact-label">Years of History</div></div>
-          <div class="fact"><div class="fact-num">1.4B</div><div class="fact-label">Population</div></div>
-          <div class="fact"><div class="fact-num">56</div><div class="fact-label">Ethnic Groups</div></div>
-          <div class="fact"><div class="fact-num">8</div><div class="fact-label">Major Cuisines</div></div>
-        </div>
-      </div>
-      <div class="china-cards reveal">
-        <div class="china-card">
-          <div class="china-card-icon">🏯</div>
-          <div class="china-card-title">The Forbidden City</div>
-          <div class="china-card-text">Imperial palace complex with 980 buildings. Home to 24 emperors of the Ming and Qing dynasties. UNESCO World Heritage Site.</div>
-        </div>
-        <div class="china-card">
-          <div class="china-card-icon">🏔️</div>
-          <div class="china-card-title">The Great Wall</div>
-          <div class="china-card-text">Over 21,000 km long. Built over centuries to protect against invasions. One of the greatest architectural achievements in history.</div>
-        </div>
-        <div class="china-card">
-          <div class="china-card-icon">🍜</div>
-          <div class="china-card-title">Chinese Cuisine</div>
-          <div class="china-card-text">Dumplings, Peking Duck, Hot Pot, Dim Sum, Noodles. Each region has its own distinct flavors and cooking traditions.</div>
-        </div>
-        <div class="china-card">
-          <div class="china-card-icon">🎎</div>
-          <div class="china-card-title">Customs & Culture</div>
-          <div class="china-card-text">Remove shoes indoors. Use both hands when giving gifts. Avoid white at celebrations. Tea culture is deeply respected.</div>
-        </div>
-        <div class="china-card">
-          <div class="china-card-icon">📅</div>
-          <div class="china-card-title">Key Dates</div>
-          <div class="china-card-text">Chinese New Year (Jan/Feb) · Golden Week (Oct 1–7) · Mid-Autumn Festival (Sep/Oct) · Dragon Boat Festival (Jun)</div>
-        </div>
-      </div>
+    <div class="section-label">Spotlight</div>
+    <h2 class="section-title">The Beauty of <em style="font-family:'Playfair Display',serif;color:var(--red);font-style:italic">China</em></h2>
+    <p class="section-sub">China is one of the world's oldest civilizations, with over 5,000 years of continuous history. From the bustling streets of Beijing to the scenic Li River in Guilin, every corner tells a story.</p>
+    <div class="china-stats">
+      <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Years of History</div></div>
+      <div class="stat"><div class="stat-num">1.4B</div><div class="stat-label">Population</div></div>
+      <div class="stat"><div class="stat-num">56</div><div class="stat-label">Ethnic Groups</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Major Cuisines</div></div>
+    </div>
+    <div class="china-features">
+      <div class="feature"><div class="feature-icon">🏯</div><h3>The Forbidden City</h3><p>Imperial palace complex with 980 buildings. Home to 24 emperors of the Ming and Qing dynasties. UNESCO World Heritage Site.</p></div>
+      <div class="feature"><div class="feature-icon">🏔️</div><h3>The Great Wall</h3><p>Over 21,000 km long. Built over centuries to protect against invasions. One of the greatest architectural achievements in history.</p></div>
+      <div class="feature"><div class="feature-icon">🍜</div><h3>Chinese Cuisine</h3><p>Dumplings, Peking Duck, Hot Pot, Dim Sum, Noodles. Each region has its own distinct flavors and cooking traditions.</p></div>
+      <div class="feature"><div class="feature-icon">🎎</div><h3>Customs & Culture</h3><p>Remove shoes indoors. Use both hands when giving gifts. Avoid white at celebrations. Tea culture is deeply respected.</p></div>
+      <div class="feature"><div class="feature-icon">📅</div><h3>Key Dates</h3><p>Chinese New Year (Jan/Feb) · Golden Week (Oct 1–7) · Mid-Autumn Festival (Sep/Oct) · Dragon Boat Festival (Jun)</p></div>
     </div>
   </div>
 </section>
 
 <!-- TYPE-3 CONDITIONALS -->
-<section id="conditionals" class="conditionals-section">
+<section id="conditionals">
   <div class="container">
-    <div class="reveal">
-      <p class="section-label">English Grammar</p>
-      <h2 class="section-title">Type-3 Conditional Sentences</h2>
-      <p class="section-sub">Travel-inspired sentences using the Third Conditional structure — imagining different outcomes from past travel situations.</p>
-    </div>
-    <div class="cond-intro reveal">
+    <div class="section-label">English Grammar</div>
+    <h2 class="section-title">Type-3 Conditional Sentences</h2>
+    <p class="section-sub">Travel-inspired sentences using the Third Conditional structure — imagining different outcomes from past travel situations.</p>
+    <div class="grammar-box">
       <h3>📚 Structure Reminder</h3>
-      <p>The Type-3 Conditional describes hypothetical situations in the past — things that did NOT happen but could have changed the outcome.</p>
-      <div class="cond-formula">If + had + past participle → would have + past participle</div>
+      <p style="color:#c5b592;font-size:.9rem;margin:.5rem 0">The Type-3 Conditional describes hypothetical situations in the past — things that did NOT happen but could have changed the outcome.</p>
+      <code>If + had + past participle → would have + past participle</code>
     </div>
-    <div class="cond-grid reveal">
-
-      <div class="cond-card">
-        <span class="cond-num">01</span>
-        <div class="cond-dest">🇨🇳 Beijing, China</div>
-        <div class="cond-sentence"><strong>If Rubén had not met Chuntal,</strong> he would have left the Forbidden City without understanding its history.</div>
-        <div class="cond-es">Si Rubén no hubiera conocido a Chuntal, habría salido de la Ciudad Prohibida sin entender su historia.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">02</span>
-        <div class="cond-dest">🇨🇳 Beijing, China</div>
-        <div class="cond-sentence"><strong>If she had not explained the history,</strong> he would have only seen beautiful walls without understanding their significance.</div>
-        <div class="cond-es">Si ella no hubiera explicado la historia, él solo habría visto paredes hermosas sin entender su significado.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">03</span>
-        <div class="cond-dest">🇨🇳 Great Wall, China</div>
-        <div class="cond-sentence"><strong>If Rubén had arrived earlier,</strong> he would have seen the Great Wall at sunrise and taken amazing photos.</div>
-        <div class="cond-es">Si Rubén hubiera llegado más temprano, habría visto la Gran Muralla al amanecer y tomado fotos increíbles.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">04</span>
-        <div class="cond-dest">🇨🇳 Beijing, China</div>
-        <div class="cond-sentence"><strong>If he had downloaded a guide before visiting,</strong> he would have understood the place even better without needing help.</div>
-        <div class="cond-es">Si hubiera descargado una guía antes de visitar, habría entendido el lugar aún mejor sin necesitar ayuda.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">05</span>
-        <div class="cond-dest">🇨🇳 Beihai Park, China</div>
-        <div class="cond-sentence"><strong>If it had not been cold that morning,</strong> Rubén would have walked around the entire park and rented a bicycle.</div>
-        <div class="cond-es">Si no hubiera hecho frío esa mañana, Rubén habría caminado por todo el parque y alquilado una bicicleta.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">06</span>
-        <div class="cond-dest">🇨🇳 Beijing, China</div>
-        <div class="cond-sentence"><strong>If Rubén had had more money,</strong> he would have bought traditional souvenirs for all his family members.</div>
-        <div class="cond-es">Si Rubén hubiera tenido más dinero, habría comprado recuerdos tradicionales para todos los miembros de su familia.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">07</span>
-        <div class="cond-dest">🇯🇵 Tokyo, Japan</div>
-        <div class="cond-sentence"><strong>If they had visited during cherry blossom season,</strong> the parks would have been covered in beautiful pink flowers.</div>
-        <div class="cond-es">Si hubieran visitado durante la temporada de cerezos, los parques habrían estado cubiertos de hermosas flores rosas.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">08</span>
-        <div class="cond-dest">🇫🇷 Paris, France</div>
-        <div class="cond-sentence"><strong>If Melissa had finished her project on time,</strong> she would have joined Rubén on his trip to Beijing.</div>
-        <div class="cond-es">Si Melissa hubiera terminado su proyecto a tiempo, habría acompañado a Rubén en su viaje a Beijing.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">09</span>
-        <div class="cond-dest">🇨🇳 Shanghai, China</div>
-        <div class="cond-sentence"><strong>If Rubén had practiced Chinese before the trip,</strong> he would not have had so many difficulties communicating with locals.</div>
-        <div class="cond-es">Si Rubén hubiera practicado chino antes del viaje, no habría tenido tantas dificultades para comunicarse con los locales.</div>
-      </div>
-
-      <div class="cond-card">
-        <span class="cond-num">10</span>
-        <div class="cond-dest">🇨🇴 Colombia → China</div>
-        <div class="cond-sentence"><strong>If he had planned the trip six months in advance,</strong> he would have found much cheaper flights and visited more cities.</div>
-        <div class="cond-es">Si hubiera planeado el viaje con seis meses de anticipación, habría encontrado vuelos más baratos y visitado más ciudades.</div>
-      </div>
-
+    <div class="cond-list">
+      <div class="cond-item"><div class="cond-num">01</div><div><div class="cond-flag">🇨🇳 Beijing, China</div><p class="cond-en"><strong>If Rubén had not met Chuntal,</strong> he would have left the Forbidden City without understanding its history.</p><p class="cond-es">Si Rubén no hubiera conocido a Chuntal, habría salido de la Ciudad Prohibida sin entender su historia.</p></div></div>
+      <div class="cond-item"><div class="cond-num">02</div><div><div class="cond-flag">🇨🇳 Beijing, China</div><p class="cond-en"><strong>If she had not explained the history,</strong> he would have only seen beautiful walls without understanding their significance.</p><p class="cond-es">Si ella no hubiera explicado la historia, él solo habría visto paredes hermosas sin entender su significado.</p></div></div>
+      <div class="cond-item"><div class="cond-num">03</div><div><div class="cond-flag">🇨🇳 Great Wall, China</div><p class="cond-en"><strong>If Rubén had arrived earlier,</strong> he would have seen the Great Wall at sunrise and taken amazing photos.</p><p class="cond-es">Si Rubén hubiera llegado más temprano, habría visto la Gran Muralla al amanecer y tomado fotos increíbles.</p></div></div>
+      <div class="cond-item"><div class="cond-num">04</div><div><div class="cond-flag">🇨🇳 Beijing, China</div><p class="cond-en"><strong>If he had downloaded a guide before visiting,</strong> he would have understood the place even better without needing help.</p><p class="cond-es">Si hubiera descargado una guía antes de visitar, habría entendido el lugar aún mejor sin necesitar ayuda.</p></div></div>
+      <div class="cond-item"><div class="cond-num">05</div><div><div class="cond-flag">🇨🇳 Beihai Park, China</div><p class="cond-en"><strong>If it had not been cold that morning,</strong> Rubén would have walked around the entire park and rented a bicycle.</p><p class="cond-es">Si no hubiera hecho frío esa mañana, Rubén habría caminado por todo el parque y alquilado una bicicleta.</p></div></div>
+      <div class="cond-item"><div class="cond-num">06</div><div><div class="cond-flag">🇨🇳 Beijing, China</div><p class="cond-en"><strong>If Rubén had had more money,</strong> he would have bought traditional souvenirs for all his family members.</p><p class="cond-es">Si Rubén hubiera tenido más dinero, habría comprado recuerdos tradicionales para todos los miembros de su familia.</p></div></div>
+      <div class="cond-item"><div class="cond-num">07</div><div><div class="cond-flag">🇯🇵 Tokyo, Japan</div><p class="cond-en"><strong>If they had visited during cherry blossom season,</strong> the parks would have been covered in beautiful pink flowers.</p><p class="cond-es">Si hubieran visitado durante la temporada de cerezos, los parques habrían estado cubiertos de hermosas flores rosas.</p></div></div>
+      <div class="cond-item"><div class="cond-num">08</div><div><div class="cond-flag">🇫🇷 Paris, France</div><p class="cond-en"><strong>If Melissa had finished her project on time,</strong> she would have joined Rubén on his trip to Beijing.</p><p class="cond-es">Si Melissa hubiera terminado su proyecto a tiempo, habría acompañado a Rubén en su viaje a Beijing.</p></div></div>
+      <div class="cond-item"><div class="cond-num">09</div><div><div class="cond-flag">🇨🇳 Shanghai, China</div><p class="cond-en"><strong>If Rubén had practiced Chinese before the trip,</strong> he would not have had so many difficulties communicating with locals.</p><p class="cond-es">Si Rubén hubiera practicado chino antes del viaje, no habría tenido tantas dificultades para comunicarse con los locales.</p></div></div>
+      <div class="cond-item"><div class="cond-num">10</div><div><div class="cond-flag">🇨🇴 Colombia → China</div><p class="cond-en"><strong>If he had planned the trip six months in advance,</strong> he would have found much cheaper flights and visited more cities.</p><p class="cond-es">Si hubiera planeado el viaje con seis meses de anticipación, habría encontrado vuelos más baratos y visitado más ciudades.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- RUBEN'S WORK -->
-<section id="ruben" class="work-section">
+<!-- ═══════════════════════════════════════════════════════
+     NEW SECTION 1 — TRAVEL BLOG: PLACES I WOULD VISIT IN CHINA
+     ══════════════════════════════════════════════════════ -->
+<section id="blog-china">
   <div class="container">
-    <div class="reveal">
-      <p class="section-label">Previous Lessons</p>
-      <h2 class="section-title">Rubén's Travel Blog</h2>
-      <p class="section-sub">Work from previous lessons — paragraphs and blog posts about Rubén's journey through China.</p>
-    </div>
-    <div class="reveal">
-      <div class="tabs">
-        <button class="tab active" onclick="showTab('paragraphs',this)">📝 Paragraphs</button>
-        <button class="tab" onclick="showTab('blog',this)">📰 Blog Post</button>
-        <button class="tab" onclick="showTab('conditional1',this)">✅ Type-1 Conditional</button>
-        <button class="tab" onclick="showTab('conditional3',this)">✅ Type-3 Conditional</button>
-      </div>
+    <div class="section-label">My Travel Blog</div>
+    <h2 class="section-title">Places I Would Visit in China</h2>
+    <p class="section-sub">A personal reflection using Type-2 Conditional sentences — imagining what I would do if I traveled to China.</p>
 
-      <div id="paragraphs" class="tab-content active">
-        <div class="paragraphs-block">
-          <div class="para-title">Paragraph 1 — Tomorrow's Plans (Type-1 Conditional)</div>
-          <p class="para-text">Rubén is thinking about tomorrow and he is a little excited. <em>If it isn't cold</em>, he will go to Beihai Park and walk around the lake. He really wants to see the park because his friend told him it's beautiful. <em>If the weather is nice</em>, he will also take some pictures to send to his family. <em>If he feels hungry after walking</em>, he will look for a small restaurant near the park and eat something local. <em>If he finds a cheap little gift</em>, he will buy it for his sister. He hopes everything goes well.</p>
-          <div class="para-title">Paragraph 2 — Weekend Plans (Type-1 Conditional)</div>
-          <p class="para-text">For the weekend, Rubén wants to spend time with Melissa. <em>If it isn't cold on Saturday</em>, they will go out and do something fun together. Rubén likes the idea of visiting a market or a park. <em>If Melissa finishes her work on time</em>, they will meet in the morning and make a plan. <em>If the weather is bad</em>, they will stay inside and watch a movie or talk. <em>If they have enough energy</em>, they will also go for a walk in the afternoon. Rubén just wants to enjoy his last days in Beijing.</p>
+    <div class="blog-card">
+      <div class="blog-header">
+        <div class="blog-flag">🇨🇳</div>
+        <div class="blog-meta">
+          <h2>Places I Would Visit in China</h2>
+          <span>✈ Travel Blog · Type-2 Conditional · Dream Destinations</span>
         </div>
       </div>
 
-      <div id="blog" class="tab-content">
-        <div class="blog-post">
-          <div class="blog-label">📍 Beijing, China · Travel Journal</div>
-          <div class="blog-title">My Visit to the Forbidden City</div>
-          <div class="blog-body">
-            <p>Rubén has completed his visit to the Forbidden City and has left with a big smile on his face. He has discovered fascinating details about Chinese emperors and has taken many photos of the beautiful palace gardens. Before meeting Chuntal, he had spent a long time looking at the buildings without really understanding their meaning.</p><br/>
-            <p>By the end of the day, Rubén has thought carefully about everything he experienced and has written notes in his travel journal. He had already visited other places in Beijing, but the Forbidden City has been his favorite. He has felt truly grateful for everything he learned and has decided that this was the best day of his entire trip.</p>
-          </div>
-        </div>
-      </div>
+      <div class="blog-body">
+        <span class="blog-tag">Beijing</span>
+        <span class="blog-tag">Shanghai</span>
+        <span class="blog-tag">Xi'an</span>
+        <span class="blog-tag">Guilin</span>
+        <span class="blog-tag">Chengdu</span>
 
-      <div id="conditional1" class="tab-content">
-        <div class="paragraphs-block">
-          <div class="para-title">Type-1 Conditional — Future Plans</div>
-          <p class="para-text"><em>If it isn't cold tomorrow</em>, Rubén will walk to Beihai Park as he planned. <em>If the weather gets warmer</em>, he can enjoy the walk more. <em>If he feels cold again</em>, he may go back to the clothing market to buy warm clothes. <em>If he finds something cheap and warm</em>, he will buy it. <em>If he doesn't have enough cash</em>, he will look for an ATM again.</p>
-          <p class="para-text"><em>If it isn't cold during the weekend</em>, Rubén will make plans with Melissa. <em>If she finishes her project</em>, they can do something fun together. <em>If the ballet tickets are not too expensive</em>, Rubén may buy them. <em>If Melissa doesn't want to go to the ballet</em>, they shall go swimming in the morning. <em>If Rubén wants to be ready</em>, he must buy the clothes before the market closes.</p>
-        </div>
-      </div>
+        <p><em>If I traveled to China</em>, I would visit Beijing first because it is a very historic city. <em>If I went to Beijing</em>, I would explore the Great Wall and take many photos. <em>If I had more time</em>, I would visit the Forbidden City and learn about ancient culture. <em>If I were in Shanghai</em>, I would walk around the modern city and enjoy the skyline. <em>If I visited Xi'an</em>, I would see the Terracotta Army and learn about its history.</p>
 
-      <div id="conditional3" class="tab-content">
-        <div class="paragraphs-block">
-          <div class="para-title">Type-3 Conditional — Reflecting on the Forbidden City</div>
-          <p class="para-text">Rubén has completed his visit to the Forbidden City and has left with a big smile on his face. He has discovered fascinating details about Chinese emperors. Before meeting Chuntal, he had spent a long time looking at the buildings without understanding their meaning. <em>If he had not met Chuntal</em>, he would have left the place without learning anything important. <em>If she had not explained the history of each building</em>, he would have only seen beautiful walls without understanding their significance. <em>If he had not asked her questions</em>, he would have missed the most interesting stories of the place.</p>
-          <p class="para-text">By the end of the day, Rubén has thought carefully about everything he experienced and has written notes in his travel journal. He had already visited other places in Beijing, but the Forbidden City has been his favorite. <em>If he had planned his visit better</em>, he would have arrived earlier and seen more areas of the palace. <em>If he had downloaded a guide before going</em>, he would have understood the place even better. <em>If Chuntal had not been so kind</em>, he would have had a completely different experience. He has felt truly grateful for everything he learned.</p>
-        </div>
+        <p><em>If I could choose another place</em>, I would go to Guilin because of its beautiful landscapes. <em>If I were there</em>, I would take a boat ride on the Li River. <em>If I visited Chengdu</em>, I would see the pandas and learn about their habitat. <em>If I had enough money</em>, I would try traditional Chinese food in every city. <em>If I traveled with friends</em>, I would enjoy the experience even more.</p>
+
+        <div class="blog-section-title">💬 Comments</div>
+        <p><em>If someone asked me which city I would visit first</em>, I would say Beijing because it is very famous. <em>If I had to choose a modern city</em>, I would pick Shanghai. <em>If I wanted to relax</em>, I would go to Guilin because it is peaceful. <em>If I liked animals</em>, I would visit Chengdu to see pandas. <em>If I could travel tomorrow</em>, I would start my trip immediately.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CHAT SECTION -->
-<section id="chat" class="chat-section">
+<!-- ═══════════════════════════════════════════════════════
+     NEW SECTION 2 — VIRTUAL BROCHURE: BEIJING (TYPE-1 CONDITIONAL)
+     ══════════════════════════════════════════════════════ -->
+<section id="beijing-folleto">
   <div class="container">
-    <div class="reveal" style="text-align:center;margin-bottom:40px;">
-      <p class="section-label" style="color:var(--gold);">Q&A</p>
-      <h2 class="section-title" style="color:#fff;">Five Places to Visit in China</h2>
-      <p class="section-sub" style="color:rgba(255,255,255,.6);margin:0 auto;">Answers to questions from the text "Cinco lugares para visitar en China"</p>
+    <div class="section-label">Folleto Virtual</div>
+    <h2 class="section-title">Tourist Attractions of Beijing</h2>
+    <p class="section-sub">A virtual brochure featuring Beijing's top destinations — written with Type-1 Conditional sentences (real and possible situations in the future).</p>
+
+    <!-- Hero del folleto -->
+    <div class="folleto-hero">
+      <div class="folleto-subtitle">✦ Virtual Brochure · Type-1 Conditional ✦</div>
+      <h2>Discover Beijing</h2>
+      <p>The ancient capital of China — where imperial history meets modern wonder. Plan your visit and explore the city's most iconic landmarks.</p>
+      <div style="color:rgba(255,255,255,.6);font-size:.8rem;margin-top:.5rem">Structure: If + present simple → will + base verb</div>
     </div>
-    <div class="chat-box reveal">
-      <div class="chat-header">
-        <div class="chat-avatar">🤖</div>
-        <div><div class="chat-title">China Travel Assistant</div><div class="chat-sub">Ask anything about visiting China</div></div>
+
+    <!-- Attraction cards -->
+    <div class="attractions">
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🏯</div>
+          <div><h3>The Forbidden City</h3><span>Palace Museum · Dongcheng</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>The magnificent Forbidden City served as the imperial palace for 24 emperors. With 980 buildings and 8,700 rooms, it is the world's largest ancient palace complex and a UNESCO World Heritage Site.</p>
+          <div class="cond1-tag"><em>If you visit the Forbidden City</em>, you will be amazed by its 980 buildings and centuries of imperial history.</div>
+        </div>
       </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🏔️</div>
+          <div><h3>The Great Wall</h3><span>Mutianyu / Badaling Section</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>One of humanity's greatest architectural achievements, the Great Wall stretches over 21,000 km across northern China. The Mutianyu section near Beijing offers stunning views and is less crowded than Badaling.</p>
+          <div class="cond1-tag"><em>If you arrive at the Great Wall early in the morning</em>, you will see breathtaking views before the crowds arrive.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🌅</div>
+          <div><h3>Tiananmen Square</h3><span>Heart of Beijing</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>The largest public square in the world, Tiananmen Square is the symbolic center of China. Witness the famous flag-raising ceremony at sunrise or admire the portrait of Mao Zedong at the Gate of Heavenly Peace.</p>
+          <div class="cond1-tag"><em>If you wake up before sunrise</em>, you will witness the impressive flag-raising ceremony at Tiananmen Square.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🏛️</div>
+          <div><h3>Temple of Heaven</h3><span>Tiantan Park · Dongcheng</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>Built in 1420, the Temple of Heaven is where emperors prayed for good harvests. Its perfectly circular Hall of Prayer for Good Harvests is an architectural masterpiece surrounded by a beautiful park.</p>
+          <div class="cond1-tag"><em>If you visit the Temple of Heaven at dawn</em>, you will find locals practicing tai chi and traditional music in the park.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🌊</div>
+          <div><h3>Beihai Park</h3><span>Imperial Garden · Xicheng</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>One of China's oldest and best-preserved imperial gardens, Beihai Park features the iconic White Dagoba pagoda and a tranquil lake perfect for boating. Rubén loved walking along its peaceful shores.</p>
+          <div class="cond1-tag"><em>If you rent a boat at Beihai Park</em>, you will enjoy a relaxing view of the White Dagoba from the water.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🛖</div>
+          <div><h3>Hutong Alleyways</h3><span>Historic Neighborhoods</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>Beijing's ancient hutong alleyways are narrow lanes connecting traditional courtyard residences. Exploring them by rickshaw or on foot gives you a genuine glimpse into the city's layered history and local culture.</p>
+          <div class="cond1-tag"><em>If you explore the hutong alleyways</em>, you will discover the authentic local life that modern Beijing hides behind its skyscrapers.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🦆</div>
+          <div><h3>Peking Duck Experience</h3><span>Quanjude & Local Restaurants</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>No visit to Beijing is complete without trying authentic Peking Duck. The dish, perfected over centuries, features crispy skin and tender meat served with pancakes, spring onions, and hoisin sauce.</p>
+          <div class="cond1-tag"><em>If you try Peking Duck at a traditional restaurant</em>, you will understand why this dish has been celebrated for over 600 years.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🏟️</div>
+          <div><h3>Olympic Bird's Nest</h3><span>Olympic Green · Chaoyang</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>The National Stadium, nicknamed the "Bird's Nest," was built for the 2008 Beijing Olympics and remains an iconic symbol of modern China. Its striking steel lattice design is breathtaking by day and night.</p>
+          <div class="cond1-tag"><em>If you visit the Bird's Nest at night</em>, you will see its incredible steel structure illuminated by colorful lights.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🎭</div>
+          <div><h3>Lama Temple (Yonghegong)</h3><span>Buddhist Temple · Dongcheng</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>The Lama Temple is Beijing's most important Tibetan Buddhist temple, home to an 18-meter tall sandalwood Buddha statue. It is one of the most revered Buddhist temples in the world outside of Tibet.</p>
+          <div class="cond1-tag"><em>If you enter the Lama Temple respectfully</em>, you will feel the spiritual atmosphere and see monks in prayer throughout the day.</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attraction-top">
+          <div class="attraction-emoji">🛍️</div>
+          <div><h3>Wangfujing Street</h3><span>Shopping & Street Food · Dongcheng</span></div>
+        </div>
+        <div class="attraction-body">
+          <p>Beijing's most famous shopping street, Wangfujing offers everything from luxury brands to local street food. Don't miss the night market — a lively strip of exotic snacks that will challenge even the most adventurous eater.</p>
+          <div class="cond1-tag"><em>If you walk along Wangfujing Street in the evening</em>, you will find an unforgettable night market full of traditional snacks and souvenirs.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Summary panel -->
+    <div class="folleto-summary">
+      <div>
+        <h3>🗺️ Quick Travel Tips</h3>
+        <ul>
+          <li>Best time to visit: April–June and September–November</li>
+          <li>Currency: Chinese Yuan (CNY ¥)</li>
+          <li>Language: Mandarin Chinese — learn basic phrases!</li>
+          <li>Visa: Required (Tourist L Visa)</li>
+          <li>Download maps offline — some apps are restricted in China</li>
+          <li>Use WeChat Pay or Alipay for most transactions</li>
+        </ul>
+      </div>
+      <div>
+        <h3>📝 Type-1 Conditional Summary</h3>
+        <p style="color:#a89070;font-size:.82rem;margin-bottom:1rem">All attraction descriptions use real, possible future conditions:</p>
+        <div class="cond1-list">
+          <div class="cond1-item"><em>If you visit</em> → you will discover…</div>
+          <div class="cond1-item"><em>If you arrive early</em> → you will see…</div>
+          <div class="cond1-item"><em>If you try the food</em> → you will understand…</div>
+          <div class="cond1-item"><em>If you explore the hutongs</em> → you will find…</div>
+          <div class="cond1-item"><em>If you wake up before sunrise</em> → you will witness…</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RUBÉN'S WORK -->
+<section id="ruben">
+  <div class="container">
+    <div class="section-label">Previous Lessons</div>
+    <h2 class="section-title">Rubén's Travel Blog</h2>
+    <p class="section-sub">Work from previous lessons — paragraphs and blog posts about Rubén's journey through China.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem">
+      <span style="background:var(--jade);color:#fff;font-size:.7rem;padding:.25rem .6rem;border-radius:2px;">📝 Paragraphs</span>
+      <span style="background:var(--jade);color:#fff;font-size:.7rem;padding:.25rem .6rem;border-radius:2px;">📰 Blog Post</span>
+      <span style="background:var(--jade);color:#fff;font-size:.7rem;padding:.25rem .6rem;border-radius:2px;">✅ Type-1 Conditional</span>
+      <span style="background:var(--jade);color:#fff;font-size:.7rem;padding:.25rem .6rem;border-radius:2px;">✅ Type-3 Conditional</span>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('p1')">Paragraph 1</div>
+      <div class="tab" onclick="showTab('p2')">Paragraph 2</div>
+      <div class="tab" onclick="showTab('blog')">Blog Post</div>
+      <div class="tab" onclick="showTab('t1')">Type-1 Conditional</div>
+      <div class="tab" onclick="showTab('t3')">Type-3 Conditional</div>
+    </div>
+
+    <div id="p1" class="tab-content active">
+      <span class="tab-badge">Paragraph 1 — Tomorrow's Plans (Type-1)</span>
+      <p>Rubén is thinking about tomorrow and he is a little excited. <em>If it isn't cold</em>, he will go to Beihai Park and walk around the lake. He really wants to see the park because his friend told him it's beautiful. <em>If the weather is nice</em>, he will also take some pictures to send to his family. <em>If he feels hungry after walking</em>, he will look for a small restaurant near the park and eat something local. <em>If he finds a cheap little gift</em>, he will buy it for his sister. He hopes everything goes well.</p>
+    </div>
+    <div id="p2" class="tab-content">
+      <span class="tab-badge">Paragraph 2 — Weekend Plans (Type-1)</span>
+      <p>For the weekend, Rubén wants to spend time with Melissa. <em>If it isn't cold on Saturday</em>, they will go out and do something fun together. Rubén likes the idea of visiting a market or a park. <em>If Melissa finishes her work on time</em>, they will meet in the morning and make a plan. <em>If the weather is bad</em>, they will stay inside and watch a movie or talk. <em>If they have enough energy</em>, they will also go for a walk in the afternoon. Rubén just wants to enjoy his last days in Beijing.</p>
+    </div>
+    <div id="blog" class="tab-content">
+      <span class="tab-badge">📍 Beijing, China · Travel Journal</span>
+      <p><strong>My Visit to the Forbidden City</strong></p>
+      <p>Rubén has completed his visit to the Forbidden City and has left with a big smile on his face. He has discovered fascinating details about Chinese emperors and has taken many photos of the beautiful palace gardens. Before meeting Chuntal, he had spent a long time looking at the buildings without really understanding their meaning.</p>
+      <p>By the end of the day, Rubén has thought carefully about everything he experienced and has written notes in his travel journal. He had already visited other places in Beijing, but the Forbidden City has been his favorite. He has felt truly grateful for everything he learned and has decided that this was the best day of his entire trip.</p>
+    </div>
+    <div id="t1" class="tab-content">
+      <span class="tab-badge">Type-1 Conditional — Future Plans</span>
+      <p><em>If it isn't cold tomorrow</em>, Rubén will walk to Beihai Park as he planned. <em>If the weather gets warmer</em>, he can enjoy the walk more. <em>If he feels cold again</em>, he may go back to the clothing market to buy warm clothes. <em>If he finds something cheap and warm</em>, he will buy it. <em>If he doesn't have enough cash</em>, he will look for an ATM again.</p>
+      <p><em>If it isn't cold during the weekend</em>, Rubén will make plans with Melissa. <em>If she finishes her project</em>, they can do something fun together. <em>If the ballet tickets are not too expensive</em>, Rubén may buy them. <em>If Melissa doesn't want to go to the ballet</em>, they shall go swimming in the morning. <em>If Rubén wants to be ready</em>, he must buy the clothes before the market closes.</p>
+    </div>
+    <div id="t3" class="tab-content">
+      <span class="tab-badge">Type-3 Conditional — Reflecting on the Forbidden City</span>
+      <p>Rubén has completed his visit to the Forbidden City and has left with a big smile on his face. He has discovered fascinating details about Chinese emperors. Before meeting Chuntal, he had spent a long time looking at the buildings without understanding their meaning. <em>If he had not met Chuntal</em>, he would have left the place without learning anything important. <em>If she had not explained the history of each building</em>, he would have only seen beautiful walls without understanding their significance. <em>If he had not asked her questions</em>, he would have missed the most interesting stories of the place.</p>
+      <p>By the end of the day, Rubén has thought carefully about everything he experienced. He had already visited other places in Beijing, but the Forbidden City has been his favorite. <em>If he had planned his visit better</em>, he would have arrived earlier and seen more areas of the palace. <em>If he had downloaded a guide before going</em>, he would have understood the place even better. <em>If Chuntal had not been so kind</em>, he would have had a completely different experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section id="chat">
+  <div class="container">
+    <div class="section-label">Q&A</div>
+    <h2 class="section-title" style="color:#f5ead0">Five Places to Visit in China</h2>
+    <p class="section-sub">Answers to questions from the text "Cinco lugares para visitar en China"</p>
+    <div class="chat-box">
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot"><div class="msg-label">Assistant</div>👋 Hello! I'm here to answer your questions about the five places to visit in China. Ask me anything!</div>
-        <div class="msg user"><div class="msg-label">Student</div>What are the five must-visit places in China?</div>
-        <div class="msg bot"><div class="msg-label">Assistant</div>The five essential places are: 🏯 <strong>The Forbidden City</strong> in Beijing, 🏔️ <strong>The Great Wall</strong> near Beijing, 🌊 <strong>The Li River</strong> in Guilin, 🕌 <strong>The Terracotta Army</strong> in Xi'an, and 🌆 <strong>The Bund</strong> in Shanghai.</div>
-        <div class="msg user"><div class="msg-label">Student</div>Why is the Forbidden City so important?</div>
-        <div class="msg bot"><div class="msg-label">Assistant</div>The Forbidden City was the imperial palace for 24 emperors over nearly 500 years (1420–1912). With 980 buildings and 8,700 rooms, it is the world's largest ancient palace complex and a UNESCO World Heritage Site. Rubén was deeply moved by its history! 🏯</div>
-        <div class="msg user"><div class="msg-label">Student</div>What food should you try in China?</div>
-        <div class="msg bot"><div class="msg-label">Assistant</div>You must try: 🥟 Dumplings (Jiaozi), 🦆 Peking Duck, 🍜 Hand-pulled Noodles, 🫕 Hot Pot, and 🥗 Dim Sum. Each region has unique flavors — northern China loves wheat-based dishes while southern China prefers rice and seafood!</div>
+        <div class="msg ai"><div class="msg-avatar">🤖</div><div class="msg-bubble">👋 Hello! I'm here to answer your questions about the five places to visit in China. Ask me anything!</div></div>
+        <div class="msg user"><div class="msg-avatar">🎓</div><div class="msg-bubble">What are the five must-visit places in China?</div></div>
+        <div class="msg ai"><div class="msg-avatar">🤖</div><div class="msg-bubble">The five essential places are: 🏯 <strong>The Forbidden City</strong> in Beijing, 🏔️ <strong>The Great Wall</strong> near Beijing, 🌊 <strong>The Li River</strong> in Guilin, 🕌 <strong>The Terracotta Army</strong> in Xi'an, and 🌆 <strong>The Bund</strong> in Shanghai.</div></div>
+        <div class="msg user"><div class="msg-avatar">🎓</div><div class="msg-bubble">Why is the Forbidden City so important?</div></div>
+        <div class="msg ai"><div class="msg-avatar">🤖</div><div class="msg-bubble">The Forbidden City was the imperial palace for 24 emperors over nearly 500 years (1420–1912). With 980 buildings and 8,700 rooms, it is the world's largest ancient palace complex and a UNESCO World Heritage Site. Rubén was deeply moved by its history! 🏯</div></div>
+        <div class="msg user"><div class="msg-avatar">🎓</div><div class="msg-bubble">What food should you try in China?</div></div>
+        <div class="msg ai"><div class="msg-avatar">🤖</div><div class="msg-bubble">You must try: 🥟 Dumplings (Jiaozi), 🦆 Peking Duck, 🍜 Hand-pulled Noodles, 🫕 Hot Pot, and 🥗 Dim Sum. Each region has unique flavors — northern China loves wheat-based dishes while southern China prefers rice and seafood!</div></div>
       </div>
-      <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Ask about China..." onkeypress="if(event.key==='Enter')sendMsg()"/>
-        <button class="chat-send" onclick="sendMsg()">➤</button>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Ask about China travel…" onkeydown="if(event.key==='Enter')sendChat()"/>
+        <button onclick="sendChat()">➤</button>
       </div>
     </div>
   </div>
@@ -523,51 +662,52 @@ footer strong{color:var(--gold);}
 
 <!-- FOOTER -->
 <footer>
-  <p>✈ <strong>World Tours</strong> — Rubén's Journey Through the World</p>
-  <p style="margin-top:8px;">English Class Project · Fundación Universitaria San Mateo · 2025</p>
+  ✈ <span>World Tours</span> — Rubén's Journey Through the World<br/>
+  <span style="color:#4a3a28;font-size:.75rem;margin-top:.4rem;display:block">English Class Project · Fundación Universitaria San Mateo · 2025</span>
 </footer>
 
 <script>
-// Reveal on scroll
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Tabs
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
 
-// Tabs
-function showTab(id, btn){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-}
-
-// Chat
-const responses = {
-  "great wall": "🏔️ The Great Wall stretches over 21,000 km and took hundreds of years to build. The best section for tourists near Beijing is Badaling or Mutianyu. If Rubén had visited the Great Wall at sunrise, he would have seen one of the most spectacular views in the world!",
-  "terracotta": "🗿 The Terracotta Army in Xi'an has over 8,000 soldiers, 130 chariots, and 150 cavalry horses, all buried with Emperor Qin Shi Huang around 210 BC. It was discovered by farmers in 1974!",
-  "li river": "🌊 The Li River in Guilin is one of China's most scenic areas. The karst mountains reflected in the calm river have inspired Chinese paintings for centuries. Best visited by bamboo raft!",
-  "shanghai": "🌆 The Bund in Shanghai is a famous waterfront with colonial architecture on one side and futuristic skyscrapers on the other. If you had visited Shanghai at night, you would have seen one of the world's most spectacular skylines!",
-  "visa": "📋 Colombian citizens need a Tourist Visa (L Visa) to visit China. Apply at the Chinese Embassy in Bogotá. You'll need: passport, photos, completed form, and hotel bookings. Processing takes 4-5 business days.",
-  "currency": "💴 China uses the Yuan (CNY), also called Renminbi (RMB). Symbol: ¥. In 2025, approximately 1 USD = 7.2 CNY. WeChat Pay and Alipay are widely used — cash is less common in cities.",
-  "default": "🤔 Great question! China is an incredibly diverse country. Ask me about specific places like the Great Wall, Li River, or Shanghai, or about topics like visa, currency, food, or customs!"
-};
-
-function sendMsg(){
-  const input = document.getElementById('userInput');
-  const msg = input.value.trim();
-  if(!msg) return;
-  const chat = document.getElementById('chatMessages');
-  chat.innerHTML += `<div class="msg user"><div class="msg-label">Student</div>${msg}</div>`;
-  const key = Object.keys(responses).find(k => msg.toLowerCase().includes(k));
-  const reply = responses[key] || responses.default;
-  setTimeout(()=>{
-    chat.innerHTML += `<div class="msg bot"><div class="msg-label">Assistant</div>${reply}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 600);
-  input.value = '';
-  chat.scrollTop = chat.scrollHeight;
-}
+  // Simple chat
+  const responses = {
+    default: "Great question! China is one of the most fascinating travel destinations in the world. Its mix of ancient history and modern innovation makes it truly unique. 🇨🇳",
+    great: "The Great Wall stretches over 21,000 km! The Mutianyu section near Beijing is perfect for visitors — it's less crowded and has stunning views. If you visit on a clear day, you'll see the wall winding over the mountains for kilometers! 🏔️",
+    food: "Chinese cuisine is incredibly diverse! 🍜 In Beijing: Peking Duck and dumplings. In Shanghai: Xiaolongbao (soup dumplings). In Sichuan: spicy hot pot. In Guangdong: dim sum. Every region has its own culinary identity!",
+    guilin: "Guilin is famous for its dramatic karst landscape — limestone peaks rising from the Li River. 🌊 A boat cruise from Guilin to Yangshuo is one of the most scenic journeys in China. The landscape inspired the design of the traditional Chinese paintings you see everywhere!",
+    panda: "🐼 The Chengdu Research Base of Giant Panda Breeding is the best place to see pandas! It's home to over 80 giant pandas. Go early in the morning — pandas are most active and playful before noon. It's an unforgettable experience!",
+    terracotta: "The Terracotta Army in Xi'an was discovered in 1974 by farmers digging a well! 🕌 Emperor Qin Shi Huang ordered over 8,000 life-sized soldiers, horses, and chariots to be buried with him. Each soldier has a unique face — it's one of the greatest archaeological discoveries in history.",
+    visa: "To visit China, most nationalities need a tourist visa (L Visa). Apply at the Chinese embassy in your country. You'll need your passport, a photo, travel itinerary, and hotel bookings. Processing usually takes 4–5 business days. Some countries now also have visa-free arrangements! ✈️",
+    beijing: "Beijing is China's capital and a must-visit! Top attractions: 🏯 Forbidden City, 🌅 Tiananmen Square, 🏔️ Great Wall (Mutianyu section), 🏛️ Temple of Heaven, 🌊 Beihai Park, 🛖 Hutong alleyways, and 🦆 Peking Duck restaurants. Plan at least 4–5 days!"
+  };
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    const box = document.getElementById('chatMessages');
+    box.innerHTML += `<div class="msg user"><div class="msg-avatar">🎓</div><div class="msg-bubble">${msg}</div></div>`;
+    input.value = '';
+    const lower = msg.toLowerCase();
+    let reply = responses.default;
+    if (lower.includes('wall') || lower.includes('muralla')) reply = responses.great;
+    else if (lower.includes('food') || lower.includes('eat') || lower.includes('comida')) reply = responses.food;
+    else if (lower.includes('guilin') || lower.includes('river') || lower.includes('río')) reply = responses.guilin;
+    else if (lower.includes('panda') || lower.includes('chengdu')) reply = responses.panda;
+    else if (lower.includes('terracotta') || lower.includes('xian') || lower.includes('xi\'an')) reply = responses.terracotta;
+    else if (lower.includes('visa') || lower.includes('passport')) reply = responses.visa;
+    else if (lower.includes('beijing') || lower.includes('peking')) reply = responses.beijing;
+    setTimeout(() => {
+      box.innerHTML += `<div class="msg ai"><div class="msg-avatar">🤖</div><div class="msg-bubble">${reply}</div></div>`;
+      box.scrollTop = box.scrollHeight;
+    }, 600);
+    box.scrollTop = box.scrollHeight;
+  }
 </script>
 </body>
 </html>
